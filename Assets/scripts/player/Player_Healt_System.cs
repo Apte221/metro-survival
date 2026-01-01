@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player_controler : MonoBehaviour
+public class Player_Healt_System : MonoBehaviour
 {
 
     [Header("Health")]
@@ -24,15 +24,22 @@ public class Player_controler : MonoBehaviour
         return health.Max;
     }
 
-    bool Take_damage (int damage)
+    void Take_damage (int damage)
     {
-        return health.TakeDamage(damage);
-
+        if (health.TakeDamage(damage))
+        {
+            Death();    
+        }
     }
     void Heal (int amount)
     {
         health.heal(amount);
     }
 
+    void Death()
+    {
+
+
+    }
 
 }
