@@ -38,7 +38,7 @@ public class Move2D : MonoBehaviour
     [SerializeField] private float coyoteTime = 0.12f;
     [SerializeField] private float jumpBuffer = 0.12f;
     [SerializeField] private float jumpCutMultiplier = 0.5f;
-
+        
     [Header("Gravity")]
     [SerializeField] private float fallGravityMultiplier = 2.2f;
     [SerializeField] private float maxFallSpeed = 22f;
