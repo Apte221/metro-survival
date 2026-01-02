@@ -6,10 +6,10 @@ public class Podpisota : MonoBehaviour
 {
 
 
-    private SpriteRenderer rend;
+    private PlayerInventoryController rend;
     private void Awake()
     {
-        rend = GetComponent<SpriteRenderer>();
+        rend = GetComponent<PlayerInventoryController>();
     }
     private void OnEnable()
     {
@@ -22,8 +22,7 @@ public class Podpisota : MonoBehaviour
 
     void color_change(int a1)
     {
-        float v = a1 / 255f;
-        rend.color = new Color(v, v, v);
+        rend.AddItem("1", a1);
     }
 
 

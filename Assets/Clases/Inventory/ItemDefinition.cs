@@ -7,4 +7,5 @@ public class ItemDefinition : ScriptableObject
     public string displayName;        // "Дерево"
     public Sprite icon;
     public int maxStack = 99;
+    public string description;
 }
