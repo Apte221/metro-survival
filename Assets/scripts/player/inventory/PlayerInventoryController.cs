@@ -44,6 +44,12 @@ public class PlayerInventoryController : MonoBehaviour
         return Inventory.CountOf(itemId);
     }
 
+
+    public ItemDefinition GetItemData(string itemId)
+    {
+        return database.Get(itemId);
+    }
+
     // ===== –≈¿ ÷≤ﬂ Õ¿ «Ã≤Õ» =====
 
     private void OnInventoryChanged()
