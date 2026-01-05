@@ -194,7 +194,7 @@ Transform:
   m_GameObject: {fileID: 167572507}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.51, y: -0.288, z: 0}
+  m_LocalPosition: {x: 0.5, y: 1.324, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -967,6 +967,7 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
+  - component: {fileID: 519420033}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1042,13 +1043,33 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.333, y: 1.994, z: -10}
+  m_LocalPosition: {x: -4.778, y: 1.71, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1642371207}
-  m_Father: {fileID: 859604933}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &519420033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c919e739592c87f4fb9305fda9c6502e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 859604933}
+  followOffset: {x: 0, y: 0, z: -10}
+  edgeSizePx: 30
+  maxOffsetX: 2.5
+  maxOffsetY: 1
+  followSpeed: 10
+  edgeSpeed: 6
+  returnSpeed: 8
 --- !u!1 &706181247
 GameObject:
   m_ObjectHideFlags: 0
@@ -1074,7 +1095,7 @@ Transform:
   m_GameObject: {fileID: 706181247}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.018, z: 0}
+  m_LocalPosition: {x: 0.039, y: 0.195, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -94806,7 +94827,7 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
@@ -94842,8 +94863,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 2}
+  m_Offset: {x: 0.07887912, y: 1.3131311}
+  m_Size: {x: 0.84224176, y: 2.221809}
   m_Direction: 0
 --- !u!114 &859604931
 MonoBehaviour:
@@ -94864,13 +94885,14 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  spr: {fileID: 0}
   ledgeCheck: {fileID: 1237293209}
-  ledgeCheckSize: {x: 1.17, y: 0.2}
+  ledgeCheckSize: {x: 1.04, y: 0.2}
   ledgeClimbDuration: 0.18
-  ledgeClimbOffset: {x: 0.55, y: 1.05}
+  ledgeClimbOffset: {x: 0.45, y: 1.05}
   enableWallInteraction: 0
   groundCheckSize: {x: -0.42, y: 0.1}
-  wallCheckSize: {x: 0.14, y: 1.27}
+  wallCheckSize: {x: 0.14, y: 0.75}
   moveSpeed: 8.41
   groundAccel: 80
   groundDecel: 90
@@ -94949,7 +94971,7 @@ Transform:
   m_GameObject: {fileID: 859604928}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.3718, y: -2.0157, z: 0}
+  m_LocalPosition: {x: -4.848, y: -1.579, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -94957,7 +94979,6 @@ Transform:
   - {fileID: 167572508}
   - {fileID: 1688754348}
   - {fileID: 1237293209}
-  - {fileID: 519420032}
   - {fileID: 190590926}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -95251,7 +95272,7 @@ Transform:
   m_GameObject: {fileID: 1237293208}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.664, z: 0}
+  m_LocalPosition: {x: 0, y: 2.038, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -95365,7 +95386,7 @@ Transform:
   m_GameObject: {fileID: 1688754347}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.508, y: -0.2880001, z: 0}
+  m_LocalPosition: {x: -0.434, y: 1.3239999, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -95377,3 +95398,4 @@ SceneRoots:
   m_Roots:
   - {fileID: 859604933}
   - {fileID: 53469473}
+  - {fileID: 519420032}

@@ -8,6 +8,7 @@ public class Move2D : MonoBehaviour
     [SerializeField] private Transform wallCheckLeft;
     [SerializeField] private Transform wallCheckRight;
     [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private SpriteRenderer spr;
 
     [Header("Ledge Climb")]
     [SerializeField] private Transform ledgeCheck;                 // точка біля верхньої частини тіла (біля голови)
@@ -75,11 +76,14 @@ public class Move2D : MonoBehaviour
     private void Reset()
     {
         rb = GetComponent<Rigidbody2D>();
+        spr = GetComponent<SpriteRenderer>();
     }
 
     private void Awake()
     {
         if (rb == null) rb = GetComponent<Rigidbody2D>();
+        if (spr == null) spr = GetComponent<SpriteRenderer>();
+
     }
 
     private void Update()
@@ -91,6 +95,16 @@ public class Move2D : MonoBehaviour
 
         if (Input.GetButtonUp("Jump"))
             jumpUp = true;
+
+        if (inputX > 0)
+        {
+            spr.flipX = false;
+        }
+        else if (inputX < 0)
+        {
+            spr.flipX = true;
+        }
+
 
         // Coyote time
         if (IsGrounded())
