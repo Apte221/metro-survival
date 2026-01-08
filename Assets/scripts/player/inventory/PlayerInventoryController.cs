@@ -1,75 +1,64 @@
-using UnityEngine;
+п»їusing UnityEngine;
+using System;
 
 public class PlayerInventoryController : MonoBehaviour
 {
+    public static PlayerInventoryController Instance { get; private set; }
+
     [Header("Inventory setup")]
     [SerializeField] private ItemDatabase database;
     [SerializeField] private int inventorySize = 20;
 
     public Inventory Inventory { get; private set; }
 
-    void Awake()
+    public event Action<PlayerInventoryController> OnReady; // СЏРєС‰Рѕ РєРѕРјСѓСЃСЊ С‚СЂРµР±Р° Р·РЅР°С‚Рё РєРѕР»Рё РіРѕС‚РѕРІРёР№
+
+    private void Awake()
     {
-        // гарантуємо, що база готова
+        // Singleton + РЅРµ Р·РЅРёС‰СѓРІР°С‚Рё РјС–Р¶ СЃС†РµРЅР°РјРё
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+
+        // С–РЅС–С†С–Р°Р»С–Р·Р°С†С–СЏ
         database.Build();
-
-        // створюємо інвентар (це чиста логіка, не MonoBehaviour)
         Inventory = new Inventory(database, inventorySize);
-
-        // підписка на зміну інвентаря
         Inventory.OnChanged += OnInventoryChanged;
+
+        OnReady?.Invoke(this);
     }
 
-    void OnDestroy()
+    private void OnDestroy()
     {
-        // ОБОВ?ЯЗКОВО відписуємось
+        if (Instance == this) Instance = null;
+
         if (Inventory != null)
             Inventory.OnChanged -= OnInventoryChanged;
     }
 
-    // ===== ПУБЛІЧНИЙ API ДЛЯ ГРИ =====
-
-    public bool AddItem(string itemId, int amount)
+    private void Update()
     {
-        return Inventory.Add(itemId, amount);
+        // С‚РёРјС‡Р°СЃРѕРІРёР№ РєРѕРґ РґР»СЏ С‚РµСЃС‚СѓРІР°РЅРЅСЏ
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            AddItem("1", 1);
+        }
+
+
     }
 
-    public bool RemoveItem(string itemId, int amount)
-    {
-        return Inventory.Remove(itemId, amount);
-    }
-
-    public int CountOf(string itemId)
-    {
-        return Inventory.CountOf(itemId);
-    }
-
-
-    public ItemDefinition GetItemData(string itemId)
-    {
-        return database.Get(itemId);
-    }
-
-    // ===== РЕАКЦІЯ НА ЗМІНИ =====
+    // ===== РџРЈР‘Р›Р†Р§РќРР™ API =====
+    public bool AddItem(string itemId, int amount) => Inventory.Add(itemId, amount);
+    public bool RemoveItem(string itemId, int amount) => Inventory.Remove(itemId, amount);
+    public int CountOf(string itemId) => Inventory.CountOf(itemId);
+    public ItemDefinition GetItemData(string itemId) => database.Get(itemId);
 
     private void OnInventoryChanged()
     {
-        // тут зазвичай:
-        // - оновлюється UI
-        // - відправляється івент
-        // - робиться autosave
-
         Debug.Log("Inventory changed");
-
-        // Debug-вивід
-        for (int i = 0; i < Inventory.Slots.Length; i++)
-        {
-            var slot = Inventory.Slots[i];
-
-            if (slot.IsEmpty)
-                Debug.Log($"[{i}] пусто");
-            else
-                Debug.Log($"[{i}] {slot.itemId} x{slot.count}");
-        }
     }
 }

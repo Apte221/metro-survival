@@ -1,39 +1,71 @@
+using System;
 using UnityEngine;
 
 public class InventoryUI : MonoBehaviour
 {
-    [SerializeField] private PlayerInventoryController controller;
-
+    [Header("UI refs")]
     [SerializeField] private InventorySlotView slotPrefab;
     [SerializeField] private Transform gridParent;
 
+
+    private PlayerInventoryController controller;
     private InventorySlotView[] views;
+    private bool built;
 
-    void Start()
+    private void OnEnable()
     {
-        var inv = controller.Inventory;
+        // якщо UI з'явився пізніше — підв'яжемося
+        TryBind();
+        if (controller != null)
+            controller.Inventory.OnChanged += Refresh;
 
-        // 1) створюємо UI слоти під розмір інвентаря
-        views = new InventorySlotView[inv.Slots.Length];
-        for (int i = 0; i < views.Length; i++)
-            views[i] = Instantiate(slotPrefab, gridParent);
-
-        // 2) підписка на подію (але через інвентар усередині контролера)
-        inv.OnChanged += Refresh;
-
-        // 3) перше малювання
+        // на випадок якщо вже є дані
         Refresh();
     }
 
-    void OnDestroy()
+   
+  
+
+
+    private void OnDisable()
     {
         if (controller != null && controller.Inventory != null)
             controller.Inventory.OnChanged -= Refresh;
     }
 
-    private void Refresh()
+    private void TryBind()
+    {
+        if (controller != null) return;
+
+        controller = PlayerInventoryController.Instance;
+        if (controller == null) return;
+
+        if (!built)
+            BuildSlots();
+    }
+
+    private void BuildSlots()
     {
         var inv = controller.Inventory;
+
+        views = new InventorySlotView[inv.Slots.Length];
+        for (int i = 0; i < views.Length; i++)
+            views[i] = Instantiate(slotPrefab, gridParent);
+
+        built = true;
+    }
+
+    private void Refresh()
+    {
+        // якщо контролер ще не готовий (наприклад UI завантажився першим) — спробуємо ще раз
+        if (controller == null)
+        {
+            TryBind();
+            if (controller == null) return;
+        }
+
+        var inv = controller.Inventory;
+        if (!built) BuildSlots();
 
         for (int i = 0; i < inv.Slots.Length; i++)
         {
