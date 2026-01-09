@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 985c5fda3f0718d40b80bd354688e81e
+guid: c3b27bebadf95b742868960f964f7806
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -124,56 +124,16 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: Frame_0
     originalName: 
-    pivot: {x: 0.5, y: -0.0925926}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 35
-      y: 61
-      width: 20
-      height: 54
-    spriteID: dc028326ef0f55346881ca032465a343
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 35, y: 61}
-  - name: Frame_1
-    originalName: 
-    pivot: {x: 0.47826087, y: -0.20408162}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 4
-      y: 61
-      width: 23
-      height: 49
-    spriteID: 67b714ff6a0f04f4e99f767c7b0911ee
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 4, y: 61}
-  - name: Frame_2
-    originalName: 
-    pivot: {x: 0.42307693, y: -0.20408162}
+    pivot: {x: 0.42424244, y: -0.2826087}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 26
-      height: 49
-    spriteID: 7da9dab5807b5594987c46b72c62d999
+      width: 33
+      height: 46
+    spriteID: 21907153ef3c391438379c0e36157c09
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -182,16 +142,56 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
+  - name: Frame_1
+    originalName: 
+    pivot: {x: 0.42424244, y: -0.2826087}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 45
+      y: 4
+      width: 33
+      height: 46
+    spriteID: e2dcaf9686d54ac4689670768b1e02f3
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 45, y: 4}
+  - name: Frame_2
+    originalName: 
+    pivot: {x: 0.42424244, y: -0.2826087}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 86
+      y: 4
+      width: 33
+      height: 46
+    spriteID: 948c594042100cd4584581b2a093ae98
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 86, y: 4}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
     uuid:
-      value0: 1502806461
+      value0: 578640060
       value1: 0
       value2: 0
       value3: 0
     guid: 0
-    name: Heroclimb
+    name: Hero_Fly
     layerFlags: 0
     layerType: 0
     blendMode: 0
@@ -200,29 +200,29 @@ ScriptedImporter:
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
-        x: 22
-        y: 5
-        width: 20
-        height: 54
-      spriteId: dc028326ef0f55346881ca032465a343
+        x: 18
+        y: 13
+        width: 33
+        height: 46
+      spriteId: 21907153ef3c391438379c0e36157c09
     - name: Frame_1
       frameIndex: 1
       additiveSortOrder: 0
       cellRect:
-        x: 21
-        y: 10
-        width: 23
-        height: 49
-      spriteId: 67b714ff6a0f04f4e99f767c7b0911ee
+        x: 18
+        y: 13
+        width: 33
+        height: 46
+      spriteId: e2dcaf9686d54ac4689670768b1e02f3
     - name: Frame_2
       frameIndex: 2
       additiveSortOrder: 0
       cellRect:
-        x: 21
-        y: 10
-        width: 26
-        height: 49
-      spriteId: 7da9dab5807b5594987c46b72c62d999
+        x: 18
+        y: 13
+        width: 33
+        height: 46
+      spriteId: 948c594042100cd4584581b2a093ae98
     linkedCells: []
     parentIndex: -1
   platformSettings:
@@ -242,4 +242,4 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 64, y: 64}
-  previousTextureSize: {x: 64, y: 128}
+  previousTextureSize: {x: 128, y: 64}
