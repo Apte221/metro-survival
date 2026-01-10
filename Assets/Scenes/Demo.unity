@@ -1526,7 +1526,7 @@ Transform:
   m_GameObject: {fileID: 706181247}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.039, y: 0.195, z: 0}
+  m_LocalPosition: {x: 0.039, y: -0.041, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -95312,12 +95312,13 @@ GameObject:
   m_Component:
   - component: {fileID: 859604933}
   - component: {fileID: 859604932}
-  - component: {fileID: 859604931}
   - component: {fileID: 859604930}
   - component: {fileID: 859604929}
   - component: {fileID: 859604934}
   - component: {fileID: 859604935}
-  - component: {fileID: 859604936}
+  - component: {fileID: 859604939}
+  - component: {fileID: 859604938}
+  - component: {fileID: 859604937}
   m_Layer: 0
   m_Name: player
   m_TagString: Untagged
@@ -95384,53 +95385,9 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.07887912, y: 1.3131311}
-  m_Size: {x: 0.84224176, y: 2.221809}
+  m_Offset: {x: 0, y: 1.0273657}
+  m_Size: {x: 0.89639807, y: 2.1038742}
   m_Direction: 0
---- !u!114 &859604931
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 859604928}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1e63c3f0a801df4fa8577e7a681c0da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rb: {fileID: 859604929}
-  groundCheck: {fileID: 706181248}
-  wallCheckLeft: {fileID: 1688754348}
-  wallCheckRight: {fileID: 167572508}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  spr: {fileID: 0}
-  ledgeCheck: {fileID: 1237293209}
-  ledgeCheckSize: {x: 1.04, y: 0.2}
-  ledgeClimbDuration: 0.18
-  ledgeClimbOffset: {x: 0.45, y: 1.05}
-  enableWallInteraction: 0
-  groundCheckSize: {x: -0.42, y: 0.1}
-  wallCheckSize: {x: 0.14, y: 0.75}
-  moveSpeed: 8
-  groundAccel: 80
-  groundDecel: 90
-  airAccel: 29.5
-  jumpSpeed: 12
-  coyoteTime: 0.06
-  jumpBuffer: 0.06
-  jumpCutMultiplier: 0.5
-  fallGravityMultiplier: 4
-  maxFallSpeed: 22
-  wallSlideSpeed: 3.5
-  wallClingTime: 0.1
-  wallClingFallSpeed: 0
-  wallPushXSpeed: 10
-  wallPushYSpeed: 12
-  wallDetachTime: 0.12
-  wallControlLockTime: 0.16
 --- !u!212 &859604932
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -95477,7 +95434,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
-  m_Size: {x: 1.0148606, y: 2.1634674}
+  m_Size: {x: 1, y: 2.02}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -95492,7 +95449,7 @@ Transform:
   m_GameObject: {fileID: 859604928}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.848, y: -1.579, z: 0}
+  m_LocalPosition: {x: -4.809, y: -0.949, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -95530,7 +95487,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Max_hp: 100
---- !u!114 &859604936
+--- !u!95 &859604937
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 859604928}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2707cf6eb7c0ba84d891b81cdde5c4a0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &859604938
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -95539,9 +95517,42 @@ MonoBehaviour:
   m_GameObject: {fileID: 859604928}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b2df70d296f3ea498a7acbe2cc6539f, type: 3}
+  m_Script: {fileID: 11500000, guid: ed669423cc9e8a843ac891df0278c36e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rayOrigin: {fileID: 1237293209}
+  rayDistance: 0.62
+  upperRayHeight: 0.65
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 64
+  hangOffset: {x: 0.22, y: -1.05}
+  standOffset: {x: 0.35, y: 0.11}
+--- !u!114 &859604939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 859604928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d891f7400f9c41e499e54a21f04ffd2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 859604929}
+  anim: {fileID: 859604937}
+  ledge: {fileID: 859604938}
+  moveSpeed: 8
+  jumpForce: 10
+  coyoteTime: 0.12
+  jumpBufferTime: 0.12
+  jumpCutMultiplier: 0.5
+  groundCheck: {fileID: 706181248}
+  groundCheckSize: {x: 0.55, y: 0.15}
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &1200033250
 GameObject:
   m_ObjectHideFlags: 0
@@ -95839,7 +95850,7 @@ Transform:
   m_GameObject: {fileID: 1237293208}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.038, z: 0}
+  m_LocalPosition: {x: 0, y: 1.124, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

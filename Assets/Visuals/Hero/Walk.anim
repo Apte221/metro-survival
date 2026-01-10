@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Climb
+  m_Name: Walk
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -31,7 +31,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 1.0666667
+        time: 0.8833333
         value: 1
         inSlope: 0
         outSlope: 0
@@ -61,7 +61,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 1.0666667
+        time: 0.8833333
         value: 2.02
         inSlope: 0
         outSlope: 0
@@ -81,15 +81,19 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: 1306540456834370920, guid: 985c5fda3f0718d40b80bd354688e81e, type: 3}
-    - time: 0.26666668
-      value: {fileID: 7018383492756030933, guid: 985c5fda3f0718d40b80bd354688e81e, type: 3}
-    - time: 0.45
-      value: {fileID: -3492148087055897525, guid: 985c5fda3f0718d40b80bd354688e81e, type: 3}
-    - time: 0.68333334
-      value: {fileID: -7698936554327362781, guid: 985c5fda3f0718d40b80bd354688e81e, type: 3}
-    - time: 0.9166667
-      value: {fileID: -510350886730191678, guid: 985c5fda3f0718d40b80bd354688e81e, type: 3}
+      value: {fileID: 8431982156856886293, guid: b5fe2f352c09fe74d908d5a415628577, type: 3}
+    - time: 0.15
+      value: {fileID: -7659282733655763518, guid: b5fe2f352c09fe74d908d5a415628577, type: 3}
+    - time: 0.28333333
+      value: {fileID: -2568797650065110556, guid: b5fe2f352c09fe74d908d5a415628577, type: 3}
+    - time: 0.43333334
+      value: {fileID: 3837136381761454091, guid: b5fe2f352c09fe74d908d5a415628577, type: 3}
+    - time: 0.5833333
+      value: {fileID: -5795847246944520752, guid: b5fe2f352c09fe74d908d5a415628577, type: 3}
+    - time: 0.71666664
+      value: {fileID: 4578582763985333525, guid: b5fe2f352c09fe74d908d5a415628577, type: 3}
+    - time: 0.8666667
+      value: {fileID: 7128883109545080164, guid: b5fe2f352c09fe74d908d5a415628577, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -130,17 +134,19 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 1306540456834370920, guid: 985c5fda3f0718d40b80bd354688e81e, type: 3}
-    - {fileID: 7018383492756030933, guid: 985c5fda3f0718d40b80bd354688e81e, type: 3}
-    - {fileID: -3492148087055897525, guid: 985c5fda3f0718d40b80bd354688e81e, type: 3}
-    - {fileID: -7698936554327362781, guid: 985c5fda3f0718d40b80bd354688e81e, type: 3}
-    - {fileID: -510350886730191678, guid: 985c5fda3f0718d40b80bd354688e81e, type: 3}
+    - {fileID: 8431982156856886293, guid: b5fe2f352c09fe74d908d5a415628577, type: 3}
+    - {fileID: -7659282733655763518, guid: b5fe2f352c09fe74d908d5a415628577, type: 3}
+    - {fileID: -2568797650065110556, guid: b5fe2f352c09fe74d908d5a415628577, type: 3}
+    - {fileID: 3837136381761454091, guid: b5fe2f352c09fe74d908d5a415628577, type: 3}
+    - {fileID: -5795847246944520752, guid: b5fe2f352c09fe74d908d5a415628577, type: 3}
+    - {fileID: 4578582763985333525, guid: b5fe2f352c09fe74d908d5a415628577, type: 3}
+    - {fileID: 7128883109545080164, guid: b5fe2f352c09fe74d908d5a415628577, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 1.0666667
+    m_StopTime: 0.8833333
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -170,7 +176,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 1.0666667
+        time: 0.8833333
         value: 1
         inSlope: 0
         outSlope: 0
@@ -200,7 +206,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 1.0666667
+        time: 0.8833333
         value: 2.02
         inSlope: 0
         outSlope: 0
@@ -219,11 +225,4 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events:
-  - time: 1.0666667
-    functionName: OnLedgeClimbFinished
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
+  m_Events: []
