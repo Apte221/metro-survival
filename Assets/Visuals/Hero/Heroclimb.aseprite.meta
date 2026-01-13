@@ -204,7 +204,7 @@ ScriptedImporter:
     uvTransform: {x: 37, y: 58}
   - name: Frame_4
     originalName: 
-    pivot: {x: -0.3, y: -0.75}
+    pivot: {x: 0.5, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:

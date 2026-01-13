@@ -95362,7 +95362,7 @@ CapsuleCollider2D:
   m_GameObject: {fileID: 859604928}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: ceebd65cd03643d4e9af741c5f44a8e5, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -124899,7 +124899,7 @@ Transform:
   m_GameObject: {fileID: 1673845230}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.03, y: -0.0239, z: 10}
+  m_LocalPosition: {x: 0.12, y: 0.09, z: 10}
   m_LocalScale: {x: 3.6760075, y: 3.7046278, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

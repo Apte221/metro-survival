@@ -93,11 +93,9 @@ public class PlayerMovement2D : MonoBehaviour
             case State.LedgeHang:
                 // На виступі фізикою не рухаємося.
                 // Тут ти вирішуєш: Jump = підтягування, або Jump = відстрибнути.
-                if (jumpPressedThisFrame)
-                {
                     Debug.Log("Ledge Climb");
                     StartLedgeClimb();
-                }
+
                 break;
 
             case State.LedgeClimb:
@@ -275,12 +273,14 @@ public class PlayerMovement2D : MonoBehaviour
     /// </summary>
     public void OnLedgeClimbFinished()
     {
+        
         Debug.Log("Ledge Climb Finished");
         if (!ledge) return;
 
         // Переміщаємо на верх виступу (точка підготовлена LedgeGrabber-ом)
+        anim.SetTrigger("LedgeClimbFinished");
         transform.position = ledge.GetStandPosition();
-
+        
         // Повертаємо фізику
         rb.bodyType = RigidbodyType2D.Dynamic;
 
