@@ -42,6 +42,11 @@ public class PlayerMovement2D : MonoBehaviour
     [SerializeField] private Vector2 groundCheckSize = new(0.55f, 0.15f); // розмір бокса
     [SerializeField] private LayerMask groundMask;                  // що вважаємо землею
 
+    [Header("Ledge Climb")]
+    [SerializeField] private AnimationCurve climbCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
+    [SerializeField] private float climbDuration = 0.45f;
+    private Vector2 climbStart;
+    private Vector2 climbTarget;
 
 
     // Поточний режим
@@ -57,6 +62,8 @@ public class PlayerMovement2D : MonoBehaviour
     private bool isGrounded;      // стоїмо на землі?
     private float coyoteTimer;    // таймер "ще можна стрибнути після сходу"
     private float bufferTimer;    // таймер "ми пам’ятаємо натиснутий Jump"
+    private float climbTimer;
+    
 
     // Куди дивиться персонаж: 1 вправо, -1 вліво
     private int facing = 1;
@@ -99,8 +106,6 @@ public class PlayerMovement2D : MonoBehaviour
                 break;
 
             case State.LedgeClimb:
-                // Поки йде підтягування — зазвичай керує анімація.
-                // Завершення робиться Animation Event-ом.
                 break;
         }
 
@@ -114,11 +119,25 @@ public class PlayerMovement2D : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // Фізичний рух краще робити в FixedUpdate.
-        if (state != State.Normal) return;
+        switch(state)
+        {
+            case State.Normal:
+                rb.velocity = new Vector2(inputX * moveSpeed, rb.velocity.y);
+                break;
+            case State.LedgeHang:
+                break;
+            case State.LedgeClimb:
+                climbTimer += Time.fixedDeltaTime;
+                float t = Mathf.Clamp01(climbTimer / climbDuration);
 
-        // Встановлюємо швидкість по X, Y залишаємо як є.
-        rb.velocity = new Vector2(inputX * moveSpeed, rb.velocity.y);
+                float k = climbCurve.Evaluate(t);
+                rb.MovePosition(Vector2.Lerp(climbStart, climbTarget, k));
+                break;
+        }
+
+
+
+
     }
 
     // ---------------- INPUT ----------------
@@ -176,13 +195,18 @@ public class PlayerMovement2D : MonoBehaviour
 
     private void HandleFacing()
     {
-        // Якщо немає руху — не міняємо напрям
-        if (Mathf.Abs(inputX) < 0.01f) return;
+        // Позиція мишки у світі
+        Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        // Визначаємо напрям
-        int newFacing = inputX > 0 ? 1 : -1;
+        // Різниця по X
+        float deltaX = mouseWorld.x - transform.position.x;
 
-        // Якщо змінився — фліпаємо scale.x
+        // Якщо мишка майже по центру — нічого не робимо
+        if (Mathf.Abs(deltaX) < 0.01f)
+            return;
+
+        int newFacing = deltaX > 0 ? 1 : -1;
+
         if (newFacing != facing)
         {
             facing = newFacing;
@@ -255,6 +279,14 @@ public class PlayerMovement2D : MonoBehaviour
     {
         // Перехід у підтягування
         state = State.LedgeClimb;
+        climbStart = rb.position;
+        climbTarget = ledge.GetStandPosition();
+
+
+        climbTimer = 0f;
+
+        rb.velocity = Vector2.zero;
+        rb.bodyType = RigidbodyType2D.Kinematic;
 
         // Вимикаємо "висіння"
         if (anim)
@@ -277,16 +309,15 @@ public class PlayerMovement2D : MonoBehaviour
         Debug.Log("Ledge Climb Finished");
         if (!ledge) return;
 
-        // Переміщаємо на верх виступу (точка підготовлена LedgeGrabber-ом)
-        anim.SetTrigger("LedgeClimbFinished");
-        transform.position = ledge.GetStandPosition();
-        
-        // Повертаємо фізику
+        rb.position = climbTarget; // точна посадка без “телепорту”, бо ми вже майже там
         rb.bodyType = RigidbodyType2D.Dynamic;
-
-        // Повертаємось у Normal
+        anim.SetTrigger("LedgeClimbFinished");
         state = State.Normal;
+
     }
+
+
+
 
     // ---------------- ANIMATOR ----------------
 
