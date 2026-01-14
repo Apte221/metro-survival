@@ -17,8 +17,7 @@ public class Inventorymenager : MonoBehaviour
     [SerializeField] private GameObject map_menu;
     [SerializeField] private GameObject main_menu;
 
-    private bool Inventory_activated = false;
-    private bool map_activated = false;
+
     
 
     MenuType currectMenu = MenuType.None;
@@ -73,14 +72,14 @@ public class Inventorymenager : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.I))
         {
-            Inventory_activated = !Inventory_activated;
-            inventory_menu.SetActive(Inventory_activated);
+     
+            inventory_menu.SetActive(true);
             Toggle(MenuType.Inventory);
         }
         if (Input.GetKeyDown(KeyCode.M))
         {
-            map_activated =! map_activated;
-            map_menu.SetActive(map_activated);
+            
+            map_menu.SetActive(true);
             Toggle(MenuType.Map);
         }
     }
