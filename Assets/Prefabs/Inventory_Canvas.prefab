@@ -1050,6 +1050,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventory_menu: {fileID: 1807429582412783177}
+  map_menu: {fileID: 0}
+  main_menu: {fileID: 0}
 --- !u!1 &7506783309306210591
 GameObject:
   m_ObjectHideFlags: 0
