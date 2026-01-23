@@ -1218,12 +1218,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2776758704059397278}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 378be23ab96166b4a8053bdae6a6a141, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   inventory_menu: {fileID: 100547469}
+  map_menu: {fileID: 0}
+  main_menu: {fileID: 0}
 --- !u!114 &7761795723720195518
 MonoBehaviour:
   m_ObjectHideFlags: 0
