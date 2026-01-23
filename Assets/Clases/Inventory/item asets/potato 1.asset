@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1d7b3f773cde9654385856a332b3b579, type: 3}
-  m_Name: potato
+  m_Name: potato 1
   m_EditorClassIdentifier: 
-  id: 1
+  id: 2
   displayName: potato
-  icon: {fileID: 1895088925437376218, guid: 93a237d0e9aa26348ae0e2cc97e5cdad, type: 3}
+  icon: {fileID: -6578886771879559628, guid: 9e84256388a520846a2514c6614341b1, type: 3}
   maxStack: 99
-  description: "\u041D\u0443 \u0446\u0435 \u043A\u0430\u0440\u0442\u043E\u043F\u043B\u044F"
+  description: "\u0426\u0435 \u043A\u0430\u0437\u0456\u043A"

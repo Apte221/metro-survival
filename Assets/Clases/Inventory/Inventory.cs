@@ -87,4 +87,15 @@ public class Inventory
         }
         return total;
     }
+
+    public void Swap(int a, int b)
+    {
+        if (a == b) return;
+        if (a < 0 || b < 0 || a >= Slots.Length || b >= Slots.Length) return;
+
+        (Slots[a], Slots[b]) = (Slots[b], Slots[a]);
+        OnChanged?.Invoke();
+    }
+
+
 }

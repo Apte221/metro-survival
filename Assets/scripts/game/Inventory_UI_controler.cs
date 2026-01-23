@@ -6,26 +6,30 @@ public class InventoryUI : MonoBehaviour
     [Header("UI refs")]
     [SerializeField] private InventorySlotView slotPrefab;
     [SerializeField] private Transform gridParent;
+    [SerializeField] private ItemInfoPanel infoPanel;
 
+    private int selectedIndex = -1;
+
+
+
+    [Header("Drag Visual")]
+    [SerializeField] private InventoryDragVisual dragVisual;
 
     private PlayerInventoryController controller;
     private InventorySlotView[] views;
     private bool built;
 
+    private int draggingFrom = -1;
+    private bool draggingValid;
+
     private void OnEnable()
     {
-        // €кщо UI з'€вивс€ п≥зн≥ше Ч п≥дв'€жемос€
         TryBind();
         if (controller != null)
             controller.Inventory.OnChanged += Refresh;
 
-        // на випадок €кщо вже Ї дан≥
         Refresh();
     }
-
-   
-  
-
 
     private void OnDisable()
     {
@@ -50,14 +54,19 @@ public class InventoryUI : MonoBehaviour
 
         views = new InventorySlotView[inv.Slots.Length];
         for (int i = 0; i < views.Length; i++)
+        {
             views[i] = Instantiate(slotPrefab, gridParent);
+            views[i].Init(this, i); // <=== важливо
+        }
 
         built = true;
+
+        if (dragVisual != null)
+            dragVisual.Hide();
     }
 
     private void Refresh()
     {
-        // €кщо контролер ще не готовий (наприклад UI завантаживс€ першим) Ч спробуЇмо ще раз
         if (controller == null)
         {
             TryBind();
@@ -82,4 +91,94 @@ public class InventoryUI : MonoBehaviour
             }
         }
     }
+
+    // ===== DRAG API (викликаЇтьс€ з≥ слот≥в) =====
+
+    public void BeginDrag(int fromIndex, Sprite sprite, bool hasIcon, string countStr)
+    {
+        if (controller == null) return;
+
+        var inv = controller.Inventory;
+        if (fromIndex < 0 || fromIndex >= inv.Slots.Length) return;
+
+        // €кщо слот порожн≥й Ч не починаЇмо drag
+        if (inv.Slots[fromIndex].IsEmpty || !hasIcon)
+        {
+            draggingFrom = -1;
+            draggingValid = false;
+            if (dragVisual) dragVisual.Hide();
+            return;
+        }
+
+        draggingFrom = fromIndex;
+        draggingValid = true;
+
+        if (dragVisual)
+            dragVisual.Show(sprite, countStr);
+    }
+
+    public void Drag(Vector2 screenPos)
+    {
+        if (!draggingValid) return;
+        if (dragVisual) dragVisual.SetPosition(screenPos);
+    }
+
+    public void EndDrag()
+    {
+        draggingFrom = -1;
+        draggingValid = false;
+        if (dragVisual) dragVisual.Hide();
+    }
+
+    public void DropOn(int toIndex)
+    {
+        if (!draggingValid) return;
+        if (controller == null) return;
+
+        var inv = controller.Inventory;
+
+        if (draggingFrom < 0 || draggingFrom >= inv.Slots.Length) return;
+        if (toIndex < 0 || toIndex >= inv.Slots.Length) return;
+
+        if (toIndex == draggingFrom)
+        {
+            EndDrag();
+            return;
+        }
+
+        // 1) м≥н≥мум: Swap
+        inv.Swap(draggingFrom, toIndex); // <-- треба додати метод у Inventory
+        // Refresh() викличетьс€ через OnChanged
+
+        EndDrag();
+    }
+
+    public void Select(int index)
+    {
+        if (controller == null) return;
+
+        var inv = controller.Inventory;
+
+        // зн€ти попередн≥й
+        if (selectedIndex >= 0 && selectedIndex < views.Length)
+            views[selectedIndex].SetSelected(false);
+
+        // €кщо кл≥к по порожньому Ч сховати опис
+        if (inv.Slots[index].IsEmpty)
+        {
+            selectedIndex = -1;
+            infoPanel.Normal();
+
+            return;
+        }
+
+        selectedIndex = index;
+        views[index].SetSelected(true);
+
+        var slot = inv.Slots[index];
+        var def = controller.GetItemData(slot.itemId);
+
+        infoPanel.Show(def, slot.count);
+    }
+
 }

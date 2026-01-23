@@ -47,6 +47,10 @@ public class PlayerInventoryController : MonoBehaviour
         {
             AddItem("1", 1);
         }
+        else if (Input.GetKeyDown(KeyCode.O))
+        {
+            AddItem("2", 5);
+        }
 
 
     }
