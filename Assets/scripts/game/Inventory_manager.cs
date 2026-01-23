@@ -5,22 +5,86 @@ using UnityEngine;
 
 public class Inventorymenager : MonoBehaviour
 {
-    public GameObject inventory_menu;
-    private bool Inventory_activated = false;
+    public enum MenuType
+    {
+        None,
+        Inventory,
+        Map
+
+    }
+
+    [SerializeField] private GameObject inventory_menu;
+    [SerializeField] private GameObject map_menu;
+    [SerializeField] private GameObject main_menu;
+
+
+    
+
+    MenuType currectMenu = MenuType.None;
+
     void Start()
     {
 
     }
 
-    // Update is called once per frame
+
     void Update()
     {
-        // код відкривання Інвентарю
-        if (Input.GetButtonDown("Inventory"))
+        Openmenu_button();
+
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Inventory_activated = !Inventory_activated;
-            inventory_menu.SetActive(Inventory_activated);
+            Closeall();
 
         }
+    }
+    public void Toggle(MenuType menu)
+    {
+        if (currectMenu == menu)
+        {
+            Closeall();
+            currectMenu = MenuType.None;
+            return;
+        }
+
+        Closeall();
+        Activemainmenu();
+        Get(menu).SetActive(true);
+        currectMenu = menu;
+    }
+    void Closeall()
+    {
+        inventory_menu.SetActive(false);
+        map_menu.SetActive(false);
+        main_menu.SetActive(false);
+    }
+    GameObject Get(MenuType menu)
+    {
+        return menu switch
+        {
+            MenuType.Inventory => inventory_menu,
+            MenuType.Map => map_menu,
+            _ => null
+        };
+    }
+    void Openmenu_button()
+    {
+        
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+     
+            inventory_menu.SetActive(true);
+            Toggle(MenuType.Inventory);
+        }
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            
+            map_menu.SetActive(true);
+            Toggle(MenuType.Map);
+        }
+    }
+    void Activemainmenu()
+    {
+        main_menu.SetActive(true);
     }
 }
