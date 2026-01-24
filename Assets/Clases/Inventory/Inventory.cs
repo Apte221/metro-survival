@@ -4,6 +4,7 @@ using UnityEngine;
 public class Inventory
 {
     public event Action OnChanged;
+    public void NotifyChanged() => OnChanged?.Invoke();
 
     public InventorySlot[] Slots { get; private set; }
     private readonly ItemDatabase _db;

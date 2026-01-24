@@ -1,24 +1,24 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
 
-public class InventorySlotView : MonoBehaviour,
-    IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler,
-    IPointerDownHandler
+public class DualSlotView : MonoBehaviour,
+    IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler, IPointerDownHandler
 {
     [SerializeField] private Image icon;
     [SerializeField] private Text countText;
     [SerializeField] private Image selectionFrame;
 
 
-    public int Index { get; private set; }
-    private InventoryUI ui;
+    private DualInventoryUI ui;
+    private Inventory inv;
+    private int index;
 
-    public void Init(InventoryUI ui, int index)
+    public void Init(DualInventoryUI ui, Inventory inv, int index)
     {
         this.ui = ui;
-        Index = index;
+        this.inv = inv;
+        this.index = index;
         SetSelected(false);
     }
 
@@ -36,17 +36,30 @@ public class InventorySlotView : MonoBehaviour,
         countText.text = count > 1 ? count.ToString() : "";
     }
 
-    // ===== Drag events =====
+    public void SetSelected(bool selected)
+    {
+        if (selectionFrame != null)
+            selectionFrame.enabled = selected;
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        if (eventData.button != PointerEventData.InputButton.Left) return;
+
+            ui?.Select(inv, index);
+
+    }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        ui?.BeginDrag(Index, icon.sprite, icon.enabled, countText.text);
+        ui?.BeginDrag(inv, index, icon.sprite, icon.enabled, countText.text);
     }
 
     public void OnDrag(PointerEventData eventData)
     {
         ui?.Drag(eventData.position);
     }
+
 
     public void OnEndDrag(PointerEventData eventData)
     {
@@ -55,21 +68,7 @@ public class InventorySlotView : MonoBehaviour,
 
     public void OnDrop(PointerEventData eventData)
     {
-        ui?.DropOn(Index);
-        ui?.Select(Index); // виділення по дропу
+        ui?.DropOn(inv, index);
+        ui?.Select(inv, index);
     }
-    public void SetSelected(bool selected)
-    {
-        if (selectionFrame != null)
-            selectionFrame.enabled = selected;
-    }
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        if (eventData.button != PointerEventData.InputButton.Left) return;
-        ui?.Select(Index); // виділення одразу по натисканню
-    }
-
-
-
-
 }

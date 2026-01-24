@@ -15,5 +15,5 @@ MonoBehaviour:
   id: 2
   displayName: potato
   icon: {fileID: -6578886771879559628, guid: 9e84256388a520846a2514c6614341b1, type: 3}
-  maxStack: 99
+  maxStack: 21
   description: "\u0426\u0435 \u043A\u0430\u0437\u0456\u043A"

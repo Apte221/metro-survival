@@ -181,9 +181,9 @@ GameObject:
   - component: {fileID: 4674550405988217926}
   - component: {fileID: 3183681010834762006}
   - component: {fileID: 5378934121612196547}
-  - component: {fileID: 7904679333863515520}
+  - component: {fileID: 6138494118577931224}
   m_Layer: 5
-  m_Name: item_slot
+  m_Name: item_slot chest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -208,7 +208,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 15, y: -15}
+  m_AnchoredPosition: {x: 11.24, y: -15}
   m_SizeDelta: {x: 30, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3183681010834762006
@@ -249,7 +249,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &7904679333863515520
+--- !u!114 &6138494118577931224
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -258,7 +258,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3740738578782268892}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7fa4690f992e7bb44bfd304df9621f7d, type: 3}
+  m_Script: {fileID: 11500000, guid: b1155f33447b9d44da25dba08bbca4c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 4175302655576825628}

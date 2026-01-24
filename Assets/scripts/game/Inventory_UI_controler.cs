@@ -56,7 +56,7 @@ public class InventoryUI : MonoBehaviour
         for (int i = 0; i < views.Length; i++)
         {
             views[i] = Instantiate(slotPrefab, gridParent);
-            views[i].Init(this, i); // <=== важливо
+            views[i].Init(this, i); // <=== важливо 
         }
 
         built = true;

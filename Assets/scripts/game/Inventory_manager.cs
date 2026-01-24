@@ -24,13 +24,17 @@ public class Inventorymenager : MonoBehaviour
 
     void Start()
     {
-
+        Closeall();
     }
 
 
     void Update()
     {
         Openmenu_button();
+        if (DualInventoryUI.Instance != null && DualInventoryUI.Instance.IsOpen)
+        { Closeall(); }
+        ;
+
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -69,7 +73,9 @@ public class Inventorymenager : MonoBehaviour
     }
     void Openmenu_button()
     {
-        
+        if (DualInventoryUI.Instance != null && DualInventoryUI.Instance.IsOpen)
+            return;
+
         if (Input.GetKeyDown(KeyCode.I))
         {
      
